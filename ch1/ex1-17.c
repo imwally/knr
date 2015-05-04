@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 #define MAXLINE 100
-#define LENGTH  81      /* add 1 to compensate for null character */
+#define LENGTH  81       /* add 1 to compensate for null character */
 
 int main() {
 
