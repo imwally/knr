@@ -50,7 +50,8 @@ int mygetline(char s[], int lim) {
 /* detab takes a character array and replaces each tab (\t) with the
  * amount of spaces specified by MAXTAB.
  *
- * note: for each tab found including subsequent 
+ * note: detab does not strip consecutive tabs, if 2 tabs are found,
+ * MAXTAB*2 spaces replace it
  */
 void detab(char s[]) {
 
