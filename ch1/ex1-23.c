@@ -7,38 +7,33 @@
 
 #include <stdio.h>
 
-#define MAXLINE 1000
+#define MAXCODE 2000
 #define IN  1
 #define OUT 0
 
-int mygetline(char s[], int lim);
-void stripcomments(char s[]);
+int getcode(char s[], int lim);
+void stripcomments(char code[], char stripped[]);
 
 int main() {
 
     int i, len, max;
-    char line[MAXLINE];
+    char code[MAXCODE];
+    char stripped[MAXCODE];
 
-    max = i = 0;
-    while ((len = mygetline(line, MAXLINE)) > 0) {
-	if (len > 0) {
-	    /* will only strip single comment lines */
-	    stripcomments(line);
-	}
+    while ((len = getcode(code, MAXCODE)) > 0) {
+	stripcomments(code, stripped);
     }
-
+    
+    printf("%s\n", stripped);
     return 0;
 }
 
-int mygetline(char s[], int lim) {
+int getcode(char s[], int lim) {
     
     int c, i;
-
-    for (i = 0; i < lim-1 && (c = getchar()) != EOF && c != '\n'; ++i) {
-	s[i] = c;
-    }
-
-    if (c == '\n') {
+    
+    i = 0;
+    while (i < lim-1 && (c = getchar()) != EOF) {
 	s[i] = c;
 	++i;
     }
@@ -48,22 +43,42 @@ int mygetline(char s[], int lim) {
     return i;
 }
 
-void stripcomments(char s[]) {
+/* stripcomments takes code, removes comments, and copies into
+ * stripped 
+ *
+ * note: does not strip // comments
+ */
+void stripcomments(char code[], char stripped[]) {
 
-    int i;
+    int i, j, x;
 
-    i = 0;
-    while (s[i] != '\0') {
-	if (s[i] == '/' && s[i+1] == '*') {
+    i = j = x = 0;
+
+    while (code[i] != '\0') {
+
+	/* found the beginning of a comment */
+	if (code[i] == '/' && code[i+1] == '*') {
+	    x = 1;
 	    i = i + 2;
-	    while (s[i] != '*' && s[i+1] != '/') {
-		++i;
+	}
+
+	/* while in a comment */
+	while (x == 1) {
+
+	    /* found end of comment */
+	    if (code[i] == '*' && code[i+1] == '/') {
+		x = 0;
+		i = i + 2;
 	    }
-	    i = i + 2;
-	} 
-	else {
-	    putchar(s[i]);
+	    ++i;
+	}
+
+	/* add to stripped if not in a comment */
+	if (x == 0) {
+	    stripped[j] = code[i];
+	    ++j;
 	    ++i;
 	}
     }
+
 }
