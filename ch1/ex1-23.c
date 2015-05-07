@@ -59,7 +59,7 @@ void stripcomments(char code[], char stripped[]) {
 	/* found the beginning of a comment */
 	if (code[i] == '/' && code[i+1] == '*') {
 	    x = 1;
-	    i = i + 2;
+	    ++i;
 	}
 
 	/* while in a comment */
@@ -68,7 +68,7 @@ void stripcomments(char code[], char stripped[]) {
 	    /* found end of comment */
 	    if (code[i] == '*' && code[i+1] == '/') {
 		x = 0;
-		i = i + 2;
+		++i;
 	    }
 	    ++i;
 	}
