@@ -15,43 +15,43 @@ int main() {
 
     /* char  */
     printf("\nchar\n----------------------------\n");
-    printf("CHAR_MIN: %5d\n",   CHAR_MIN);
-    printf("CHAR_MAX: %5d\n\n", CHAR_MAX);
+    printf("CHAR_MIN:  %d\n",   CHAR_MIN);
+    printf("CHAR_MAX:   %d\n\n", CHAR_MAX);
 
     /* unsigned char */
     printf("unsigned char\n----------------------------\n");
-    printf("UCHAR_MAX: %5d\n\n", UCHAR_MAX);
+    printf("UCHAR_MAX:  %d\n\n", UCHAR_MAX);
 
     /* signed char */
     printf("signed char\n----------------------------\n");
-    printf("SCHAR_MIN: %5d\n",   SCHAR_MIN);
-    printf("SCHAR_MAX: %5d\n\n", SCHAR_MAX);
+    printf("SCHAR_MIN: %d\n",   SCHAR_MIN);
+    printf("SCHAR_MAX:  %d\n\n", SCHAR_MAX);
 
     /* short */
     printf("short\n----------------------------\n");
-    printf("SHRT_MIN: %8d\n",   SHRT_MIN);
-    printf("SHRT_MAX: %8d\n\n", SHRT_MAX);
+    printf("SHRT_MIN:  %d\n",   SHRT_MIN);
+    printf("SHRT_MAX:   %d\n\n", SHRT_MAX);
 
     /* unsigned short */
     printf("unsigned short\n----------------------------\n");
-    printf("USHRT_MAX: %8d\n\n", USHRT_MAX);
+    printf("USHRT_MAX:  %d\n\n", USHRT_MAX);
 
     /* int */
     printf("int\n----------------------------\n");
-    printf("INT_MIN: %12d\n",   INT_MIN);
-    printf("INT_MAX: %12d\n\n", INT_MAX);
+    printf("INT_MIN:   %d\n",   INT_MIN);
+    printf("INT_MAX:    %d\n\n", INT_MAX);
 
     /* unsigned int */
     printf("unsigned int\n----------------------------\n");
-    printf("UINT_MAX: %12d\n\n", UINT_MAX);
+    printf("UINT_MAX:   %lu\n\n", UINT_MAX);
 
     /* long */
     printf("long\n----------------------------\n");
-    printf("LONG_MIN: %lu\n",   LONG_MIN);
-    printf("LONG_MAX: %lu\n\n", LONG_MAX);
+    printf("LONG_MIN:   %lu\n",   LONG_MIN);
+    printf("LONG_MAX:   %lu\n\n", LONG_MAX);
     
     /* unsigned long */
     printf("unsigned long\n----------------------------\n");
-    printf("ULONG_MAX: %lu\n\n", ULONG_MAX);
+    printf("ULONG_MAX:  %ul\n\n", ULONG_MAX);
     
 }
