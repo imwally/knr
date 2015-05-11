@@ -9,23 +9,30 @@
 #include <stdio.h>
 #include <ctype.h>
 
+long htoi(char s[]);
+
 void main() {
 
-    char hexstring[20] = "0xDEAD";
+    char hexstring[20] = "0xdeadBEEF";
 
-    printf("%d\n", htoi(hexstring));
+    printf("%lu\n", htoi(hexstring));
     
 }
 
-int htoi(char s[]) {
+long htoi(char s[]) {
 
-    int i, j, n  = 0;
+    long n, i , j;
+
+    n = 0;
+    i = 0;
+    j = 0;
+
     int length = len(s) - 1;
     
     while (s[i] != '\0') {
 
 	if (!isdigit(s[i])) {
-	    if (s[i] >= 'A' && s[i] <= 'F') {
+	    if (s[i] >= 'A' && s[i] <= 'F' || s[i] >= 'a' && s[i] <= 'f') {
 		j = tolower(s[i]);
 		j = (j - 'a') + 10;
 		n = n + (j * power(16, (length - i)));
