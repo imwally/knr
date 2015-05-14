@@ -48,6 +48,6 @@ unsigned setbits(unsigned x, int p, int n, unsigned y) {
     /* shift bits in y to position p */
     y = y << p;
 
-    /* inclusive or x and y */
+    /* inclusive OR x and y */
     return y | x;
 }
