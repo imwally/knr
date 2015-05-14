@@ -5,14 +5,19 @@
  * unchanged.
  */
 
+#include <stdio.h>
+
+unsigned setbits(unsigned x, int p, int n, unsigned y);
+
 int main() {
 
     unsigned int x = 0x4a;   /* 01001010 (74) */
     unsigned int y = 0x3c;   /* 00111100 (60) */
 
-    printf("x unaltered: %d\n" x);
-
-    /* What setbits(x, 4, 4, y) is supposed to do:
+    printf("x: %x\n", x);
+    printf("y: %x\n", y);
+    
+    /* setbits(x, 4, 4, y):
      *
      * x = 0  1  0  0  1  0  1  0
      *     7  6  5  4  3  2  1  0
@@ -31,13 +36,18 @@ int main() {
      * In decimal this is 202.
      */
 
-    setbits(x, 4, 4, y);
-
-    printf("x after setbits: %d\n", x); 
+    printf("setbits(x, 4, 4, y) = %d\n", setbits(x, 4, 4, y));
 
 }
 
-void setbits(unsigned x, int p, int n, unsigned y) {
+unsigned setbits(unsigned x, int p, int n, unsigned y) {
 
-        
+    /* clear all but right most n bits of y */
+    y = ~(~0 << n) & y;
+
+    /* shift bits in y to position p */
+    y = y << p;
+
+    /* inclusive or x an y */
+    return y | x;
 }
