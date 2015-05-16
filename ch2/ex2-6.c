@@ -23,8 +23,8 @@ int main() {
      *     7  6  5  4  3  2  1  0
      *     ^--------^
      *
-     * The 4 bits that begin at position 4 must be set to the rightmost 4 bits
-     * of y.
+     * The 4 bits that begin at position 4 must be set to the
+     * rightmost 4 bits of y.
      *
      * y = 0  0  1  1  1  1  0  0
      *                 ^--------^
@@ -38,6 +38,28 @@ int main() {
 
     printf("setbits(x, 4, 4, y) = %d\n", setbits(x, 4, 4, y));
 
+
+    unsigned a = 0x34; /* 00110100 */
+    unsigned b = 0x80; /* 10000000 */
+    
+    /* setbits (a, 5, 2, b):
+     *
+     * a = 0  0  1  1  0  1  0  0
+     *     7  6  5  4  3  2  1  0
+     *        ^--^
+     * 
+     * The 2 bits that begin as position 5 must bet set to the
+     * righmost 2 bits of b.
+     *
+     * b = 1  0  0  0  0  0  0  0
+     *                       ^--^
+     *
+     * a = 0  0  0  1  0  1  0  0
+     *
+     * In decimal this is 20.
+     */
+    printf("a: %d\nb: %d\n", a, b);
+    printf("setbits(a, 5, 2, b) = %d\n", setbits(a, 5, 2, b));
 }
 
 unsigned setbits(unsigned x, int p, int n, unsigned y) {
