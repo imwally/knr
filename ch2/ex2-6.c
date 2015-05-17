@@ -21,7 +21,7 @@ int main() {
      *
      * x = 0  1  0  0  1  0  1  0
      *     7  6  5  4  3  2  1  0
-     *     ^--------^
+     *              ^--------^
      *
      * The 4 bits that begin at position 4 must be set to the
      * rightmost 4 bits of y.
@@ -31,44 +31,26 @@ int main() {
      *
      * These 4 bits should replace the 4 in x.
      *
-     * x = 1  1  0  0  1  0  1  0
+     * x = 0  1  0  1  1  0  0  0
+     *              ^--------^
      *
-     * In decimal this is 202.
+     * In decimal this is 88.
      */
 
     printf("setbits(x, 4, 4, y) = %d\n", setbits(x, 4, 4, y));
 
-
-    unsigned a = 0x34; /* 00110100 */
-    unsigned b = 0x80; /* 10000000 */
-    
-    /* setbits (a, 5, 2, b):
-     *
-     * a = 0  0  1  1  0  1  0  0
-     *     7  6  5  4  3  2  1  0
-     *        ^--^
-     * 
-     * The 2 bits that begin as position 5 must bet set to the
-     * righmost 2 bits of b.
-     *
-     * b = 1  0  0  0  0  0  0  0
-     *                       ^--^
-     *
-     * a = 0  0  0  1  0  1  0  0
-     *
-     * In decimal this is 20.
-     */
-    printf("a: %d\nb: %d\n", a, b);
-    printf("setbits(a, 5, 2, b) = %d\n", setbits(a, 5, 2, b));
 }
 
 unsigned setbits(unsigned x, int p, int n, unsigned y) {
+
+    /* zero out n bits starting at position p of x */
+    x = x & ~((~(~0 << n)) << (p+1 - n));
 
     /* clear all but right most n bits of y */
     y = ~(~0 << n) & y;
 
     /* shift bits in y to position p */
-    y = y << p;
+    y = y << (p+1-n);
 
     /* inclusive OR x and y */
     return y | x;
