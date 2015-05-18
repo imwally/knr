@@ -37,7 +37,7 @@ int main() {
      *     7  6  5  4  3  2  1  0
      *              ^--^
      *
-     * The 3 bits that begin at position 3 must be inverted.
+     * The 2 bits that begin at position 4 must be inverted.
      *
      * x = 1  0  1  0  1  1  0  1 
      *              ^--^
