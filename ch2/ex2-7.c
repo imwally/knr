@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 unsigned invert(unsigned x, int p, int n);
+unsigned getbits(unsigned x, int p, int n);
 
 int main() {
 
@@ -17,19 +18,49 @@ int main() {
      *
      * x = 1  0  1  1  0  1  0  1
      *     7  6  5  4  3  2  1  0
-     *           ^-----^
+     *                 ^-----^
      *
      * The 3 bits that begin at position 3 must be inverted.
      *
-     * x = 1  0  0  0  1  1  0  1
-     *           ^-----^
+     * x = 1  0  1  1  1  0  1  1 
+     *                 ^-----^
      *
-     * This is 141 in decimal.
+     * This is 187 in decimal.
      */
 
-    printf("x inverted: %d\n", invert(x, 3, 3));
+    printf("x: %d\n", x);
+    printf("invert(x, 3, 3): %d\n", invert(x, 3, 3));
+
+    /* invert(x, 4, 2):
+     *
+     * x = 1  0  1  1  0  1  0  1
+     *     7  6  5  4  3  2  1  0
+     *              ^--^
+     *
+     * The 3 bits that begin at position 3 must be inverted.
+     *
+     * x = 1  0  1  0  1  1  0  1 
+     *              ^--^
+     *
+     * This is 173 in decimal.
+     */
+
+    printf("invert(x, 4, 2): %d\n", invert(x, 4, 2));
 }
 
 unsigned invert(unsigned x, int p, int n) {
 
+    /* get inverted n bits of x starting at position p 
+     * and move bits back to position p    
+     */
+    unsigned y = getbits(~x,p,n) << (p+1-n);
+    
+    /* zero out n bits starting at position p of x */
+    x = x & ~((~(~0 << n)) << (p+1-n));
+    
+    return y | x;
+}
+
+unsigned getbits(unsigned x, int p, int n) {
+    return (x >> (p+1-n)) & ~(~0 << n);
 }
