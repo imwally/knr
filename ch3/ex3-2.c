@@ -34,13 +34,14 @@ void escape(char s[], char t[]) {
 	case '\t':
 	    t[j++] = '\\';
 	    t[j++] = 't';
-	    ++i;
+	    break;
 	case '\n':
 	    t[j++] = '\\';
 	    t[j++] = 'n';
-	    ++i;
+	    break;
 	default:
 	    t[j++] = s[i];
+	    break;
 	}
     }
 
