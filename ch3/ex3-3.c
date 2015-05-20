@@ -17,7 +17,7 @@ void expand(char s1[], char s2[]);
 
 int main() {
 
-    char msg1[MAX] = "I'd like to expand a-h, l-q, and maybe w-z.\n";
+    char msg1[MAX] = "I'd like to expand a-h, L-Q, and maybe r-v-z ... oh and 0-9.\n";
     char msg2[MAX];
     
     printf("unexpanded:\n%s\n", msg1);
@@ -25,6 +25,7 @@ int main() {
     expand(msg1, msg2);
     printf("expanded:\n%s\n", msg2);
 
+    return 0;
 }
 
 void expand(char s1[], char s2[]){
@@ -35,7 +36,7 @@ void expand(char s1[], char s2[]){
 	/* expand only if a character precedes the dash */
 	if (s1[i] == '-' && s1[i-1] != ' ') {
 
-	    for (s2[j] = s1[i-1]+1; s2[j] < s1[i+1]; ++j) {
+	    for (s2[j] = s1[i-1]+1; s2[j] != s1[i+1]; ++j) {
 		s2[j+1] = s2[j]+1;
 	    }
 
