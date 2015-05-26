@@ -16,12 +16,14 @@ int main(void) {
     char c[] = "world";
     char d[] = "ing";
     char e[] = "testing";
-
+    char f[] = "world!";
+    
     printf("%s\t%s = %d\n", a, b, strend(a, b));
     printf("%s\t%s = %d\n", a, c, strend(a, c));
+    printf("%s\t%s = %d\n", a, f, strend(a, f));    
     printf("%s\t%s = %d\n", c, d, strend(c, d));
     printf("%s\t%s = %d\n", e, d, strend(e, d));
-    
+
 }
 
 int strend(char *s, char *t) {
@@ -36,7 +38,7 @@ int strend(char *s, char *t) {
     /* check equality of each character */
     for(; *s_diff == *t; s_diff++, t++) {
 	/* all characters were equal up til end of s */
-	if (*s_diff == '\0') {
+	if (*s_diff == '\0' && *t == '\0') {
 	    return 1;
 	}
     }
