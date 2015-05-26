@@ -33,16 +33,14 @@ int strend(char *s, char *t) {
     char *s_diff;
     s_diff = s+diff;
 
-    /* scan s_diff until end */
-    while (*s_diff != '\0') {
-
-	/* check equality: if no match return 0 */
-	if (*s_diff != *t) {
-	    return 0;
+    /* check equality of each character */
+    for(; *s_diff == *t; s_diff++, t++) {
+	/* all characters were equal up til end of s */
+	if (*s_diff == '\0') {
+	    return 1;
 	}
-	s_diff++;
-	t++;
     }
-    
-    return 1;
+
+    /* strings were different */
+    return 0;
 }
