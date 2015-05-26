@@ -37,7 +37,7 @@ int strend(char *s, char *t) {
 
     /* check equality of each character */
     for(; *s_diff == *t; s_diff++, t++) {
-	/* all characters were equal up til end of s */
+	/* all characters were equal up til end of s and t */
 	if (*s_diff == '\0' && *t == '\0') {
 	    return 1;
 	}
