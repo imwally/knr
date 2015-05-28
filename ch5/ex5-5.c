@@ -35,6 +35,21 @@ int main(void) {
 
     mystrncat(c, d, 4);
     printf("c after mystrncat(c, d, 4): %s\n\n", c);
+
+    printf("---\n");
+    
+    /* mystrcmp */
+    char e[20] = "coffee and cream";
+    char f[20] = "coffee and sugar";
+
+
+    printf("e: %s\n", e);
+    printf("f: %s\n", f);
+    
+    mystrncmp(f, e, 5);
+    printf("mystrncmp(f, e, 10): %d\n", mystrncmp(f, e, 10));
+    printf("mystrncmp(f, e, 11): %d\n", mystrncmp(f, e, 11));
+    
 }
 
 /* strncpy: copies up to first n characters of t to s */
@@ -58,4 +73,18 @@ void mystrncat(char *s, char *t, int n) {
     for (i = 0; i < n; ++i) {
 	*s++ = *t++;
     }
+}
+
+/* strncmp: compare the first n characters of t to s */
+int mystrncmp(char *s, char *t, int n) {
+
+    int i;
+    for(i = 0; *s == *t; i++, s++, t++) {
+	if (i == n) {
+	    return 0;
+	}
+    }
+
+    return *s - *t;
+	
 }
