@@ -24,17 +24,18 @@ void writelines(char *lineptr[], int nlines);
 
 main(int argc, char *argv[]) {
 
-    int c, nl, nlines;
+    int c, tail, nlines;
     char line[MAXLINES];
 
     /* default number of last lines to print */
-    nl = 10;
+    tail = 10;
 
+    /* check for optional tail argument number */
     while (--argc > 0 && (*++argv)[0] == '-') {
 	c = *++argv[0];
 	if (isdigit(c)) {
 	    argc = 0;
-	    nl = atoi(*argv);
+	    tail = atoi(*argv);
 	}
 	else {
 	    printf("tail: illegal option %c\n", c);
@@ -42,10 +43,22 @@ main(int argc, char *argv[]) {
 	}
     }
 
+    /* read up to MAXLINES into lineptr */
     if ((nlines = readlines(lineptr, MAXLINES)) >= 0) {
-	writelines(lineptr+(nlines-nl), nl);
+
+	/* less lines were read than tail so print all */
+	if (nlines < tail) {
+	    writelines(lineptr, nlines);
+	}
+
+	/* otherwise only print the last tail number of lines */
+	else {
+	    writelines(lineptr+(nlines-tail), tail);
+	}
+	
 	return 0;
     }
+
     else {
 	printf("error: input too big\n");
 	return 1;
