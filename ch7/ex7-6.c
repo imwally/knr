@@ -78,7 +78,7 @@ main(int argc, char *argv[])
     fclose(fp1);
     fclose(fp2);
 
-    /* in case stdout can be written to */
+    /* in case stdout can't be written to */
     if (ferror(stdout)) {
         fprintf(stderr, "%s: error writing stdout \n", prog);
         exit(3);
