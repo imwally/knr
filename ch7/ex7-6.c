@@ -14,25 +14,24 @@ void *fcompare(FILE *fp1, FILE *fp2)
 {
     char line1[MAXLINE];
     char line2[MAXLINE];
-    char *status1, *status2;
 
     int compare, lnum1, lnum2;
     lnum1 = lnum2 = 0; 
     compare = 0; 
 
     while (compare == 0) {
-        status1 = fgets(line1, MAXLINE, fp1);
-        status2 = fgets(line2, MAXLINE, fp2);
+        fgets(line1, MAXLINE, fp1);
+        fgets(line2, MAXLINE, fp2);
     
-        if (status1 == NULL && status2 == NULL) {
+        if (feof(fp1) && feof(fp2)) {
             break;
         }
 
-        if (status1 != NULL) {
+        if (!feof(fp1)) {
             ++lnum1;
         }
 
-        if (status2 != NULL) {
+        if (!feof(fp2)) {
             ++lnum2;
         }
 
